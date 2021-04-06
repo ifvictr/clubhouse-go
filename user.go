@@ -140,19 +140,25 @@ type MeParams struct {
 
 type MeResponse struct {
 	Response
-	AccessToken                  string          `json:"access_token"`
-	ActionableNotificationsCount int             `json:"actionable_notifications_count"`
-	AuthToken                    string          `json:"auth_token"`
-	BlockedIds                   *[]int          `json:"blocked_ids"`
-	Email                        string          `json:"email"`
-	FeatureFlags                 []string        `json:"feature_flags"`
-	FollowingIds                 *[]int          `json:"following_ids"`
-	HasUnreadNotifications       bool            `json:"has_unread_notifications"`
-	IsAdmin                      bool            `json:"is_admin"`
-	NotificationsEnabled         bool            `json:"notifications_enabled"`
-	NumInvites                   int             `json:"num_invites"`
-	RefreshToken                 string          `json:"refresh_token"`
-	UserProfile                  BaseUserProfile `json:"user_profile"`
+	AccessToken                  string   `json:"access_token"`
+	ActionableNotificationsCount int      `json:"actionable_notifications_count"`
+	AuthToken                    string   `json:"auth_token"`
+	BlockedIds                   *[]int   `json:"blocked_ids"`
+	Email                        string   `json:"email"`
+	FeatureFlags                 []string `json:"feature_flags"`
+	FollowingIds                 *[]int   `json:"following_ids"`
+	HasUnreadNotifications       bool     `json:"has_unread_notifications"`
+	IsAdmin                      bool     `json:"is_admin"`
+	NotificationsEnabled         bool     `json:"notifications_enabled"`
+	NumInvites                   int      `json:"num_invites"`
+	RefreshToken                 string   `json:"refresh_token"`
+	ServiceStatus                *struct {
+		ButtonTitle string `json:"button_title"`
+		Message     string `json:"message"`
+		Title       string `json:"title"`
+		URL         string `json:"url"`
+	} `json:"service_status"`
+	UserProfile BaseUserProfile `json:"user_profile"`
 }
 
 func (c *Client) Me(params *MeParams) (*MeResponse, *http.Response, error) {

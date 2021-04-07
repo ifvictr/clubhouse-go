@@ -28,7 +28,7 @@ func (c *Client) GetStripeEphemeralKey(params *GetStripeEphemeralKeyParams) (*Ge
 }
 
 type SendDirectPaymentParams struct {
-	Amount          int     `json:"amount"` // Amount is in smallest common currency unit. For example, an amount of 100 would be $1.00.
+	Amount          int     `json:"amount"` // Amount is in the smallest common currency unit. E.g. $1.00 = 100
 	Channel         *string `json:"channel"`
 	PaymentMethodID string  `json:"payment_method_id"`
 	ReceivingUserID int     `json:"receiving_user_id"`

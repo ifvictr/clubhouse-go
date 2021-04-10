@@ -180,7 +180,8 @@ type SearchUsersParams struct {
 
 type SearchUsersResponse struct {
 	PageResponse
-	Users []SearchUserProfile `json:"users"`
+	QueryID string              `json:"query_id"`
+	Users   []SearchUserProfile `json:"users"`
 }
 
 func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *http.Response, error) {

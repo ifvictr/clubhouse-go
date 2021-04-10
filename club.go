@@ -122,7 +122,8 @@ type SearchClubsParams struct {
 
 type SearchClubsResponse struct {
 	PageResponse
-	Clubs []SearchClub `json:"clubs"`
+	Clubs   []SearchClub `json:"clubs"`
+	QueryID string       `json:"query_id"`
 }
 
 func (c *Client) SearchClubs(params *SearchClubsParams) (*SearchClubsResponse, *http.Response, error) {

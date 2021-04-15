@@ -36,15 +36,17 @@ func New(opts ...ClientOption) *Client {
 	httpClient := &http.Client{Jar: jar}
 
 	client.sling = sling.New().Client(httpClient).Base(BaseURL)
+	client.deviceID = uuid.New()
+	client.userAgent = fmt.Sprintf("clubhouse/%d (iPhone; iOS 14.3; Scale/2.00)", AppBuild)
 
 	// Set default headers
 	headers := map[string]string{
 		"Connection": "keep-alive",
-		"User-Agent": fmt.Sprintf("clubhouse/%d (iPhone; iOS 14.3; Scale/2.00)", AppBuild),
+		"User-Agent": client.userAgent,
 		// App-specific headers
 		"CH-AppBuild":   strconv.Itoa(AppBuild),
 		"CH-AppVersion": AppVersion,
-		"CH-DeviceId":   strings.ToUpper(uuid.NewString()),
+		"CH-DeviceId":   strings.ToUpper(client.deviceID.String()),
 		"CH-Languages":  "en-US",
 		"CH-Locale":     "en_US",
 		"CH-UserID":     "(null)",

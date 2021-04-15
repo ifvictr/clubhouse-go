@@ -166,6 +166,29 @@ func (c *Client) GetMutualFollows(params *GetMutualFollowsParams) (*GetMutualFol
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type GetOnlineFriendsParams struct{}
+
+type GetOnlineFriendsResponse struct {
+	Clubs []struct {
+		Club
+		IsAdmin       bool              `json:"is_admin"`
+		OnlineMembers []BaseUserProfile `json:"online_members"`
+	} `json:"clubs"`
+	Users []struct {
+		BaseUserProfile
+		LastActiveMinutes int `json:"last_active_minutes"`
+	} `json:"users"`
+}
+
+func (c *Client) GetOnlineFriends() (*GetOnlineFriendsResponse, *http.Response, error) {
+	params := &GetOnlineFriendsParams{}
+
+	apiRes := new(GetOnlineFriendsResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Post("get_online_friends").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetProfileParams struct {
 	UserID   int    `json:"user_id,omitempty"`
 	Username string `json:"username,omitempty"`

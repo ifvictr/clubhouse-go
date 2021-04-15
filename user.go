@@ -15,7 +15,7 @@ type BaseUserProfile struct {
 type FollowerUserProfile struct {
 	BaseUserProfile
 	Bio               *string `json:"bio"`
-	LastActiveMinutes int     `json:"last_active_minutes"`
+	LastActiveMinutes *int    `json:"last_active_minutes"`
 	Twitter           *string `json:"twitter"`
 }
 

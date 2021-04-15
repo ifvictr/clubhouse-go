@@ -43,3 +43,26 @@ func (c *Client) GetEvents(params *GetEventsParams) (*GetEventsResponse, *http.R
 	res, err := c.sling.New().Get("get_events").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
+
+type GetEventsForUserParams struct {
+	UserID int `url:"user_id"`
+
+	Page     *int `json:"-" url:"page,omitempty"`
+	PageSize *int `json:"-" url:"page_size,omitempty"`
+}
+
+type GetEventsForUserResponse struct {
+	PageResponse
+	Events []struct {
+		Event
+		ClubIsFollower int `json:"club_is_follower"`
+		ClubIsMember   int `json:"club_is_member"`
+	} `json:"events"`
+}
+
+func (c *Client) GetEventsForUser(params *GetEventsForUserParams) (*GetEventsForUserResponse, *http.Response, error) {
+	apiRes := new(GetEventsForUserResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Get("get_events_for_user").QueryStruct(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}

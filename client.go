@@ -22,7 +22,7 @@ const (
 type Client struct {
 	sling *sling.Sling
 
-	deviceID  *uuid.UUID
+	deviceID  uuid.UUID
 	token     string
 	userAgent string
 	userID    int
@@ -78,7 +78,7 @@ func WithAuth(token string, userID int) ClientOption {
 // WithDeviceID is an option for setting the device ID.
 func WithDeviceID(deviceID uuid.UUID) ClientOption {
 	return func(client *Client) {
-		client.deviceID = &deviceID
+		client.deviceID = deviceID
 		client.sling.Set("CH-DeviceId", strings.ToUpper(client.deviceID.String()))
 	}
 }

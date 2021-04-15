@@ -206,6 +206,21 @@ func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type UpdateBioParams struct {
+	Bio string `json:"bio"`
+}
+
+type UpdateBioResponse struct {
+	Response
+}
+
+func (c *Client) UpdateBio(params *UpdateBioParams) (*UpdateBioResponse, *http.Response, error) {
+	apiRes := new(UpdateBioResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("update_bio").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type UpdateNameParams struct {
 	Name string `json:"name"`
 }

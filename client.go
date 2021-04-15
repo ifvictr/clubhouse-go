@@ -69,14 +69,6 @@ func NewFromToken(token string, opts ...ClientOption) *Client {
 	return New(opts...)
 }
 
-// WithAuth is an option for setting the user token and ID.
-func WithAuth(token string, userID int) ClientOption {
-	return func(client *Client) {
-		WithToken(token)(client)
-		WithUserID(userID)(client)
-	}
-}
-
 // WithDeviceID is an option for setting the device ID.
 func WithDeviceID(deviceID uuid.UUID) ClientOption {
 	return func(client *Client) {
@@ -90,14 +82,6 @@ func WithToken(token string) ClientOption {
 	return func(client *Client) {
 		client.token = token
 		client.sling.Set("Authorization", fmt.Sprintf("Token %s", client.token))
-	}
-}
-
-// WithUserAgent is an option for setting the user agent.
-func WithUserAgent(userAgent string) ClientOption {
-	return func(client *Client) {
-		client.userAgent = fmt.Sprintf("%s %s", userAgent, client.userAgent)
-		client.sling.Set("User-Agent", client.userAgent)
 	}
 }
 

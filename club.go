@@ -54,7 +54,7 @@ type FollowClubResponse struct {
 
 func (c *Client) FollowClub(params *FollowClubParams) (*FollowClubResponse, *http.Response, error) {
 	apiRes := new(FollowClubResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("follow_club").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -82,7 +82,7 @@ type GetClubResponse struct {
 
 func (c *Client) GetClub(params *GetClubParams) (*GetClubResponse, *http.Response, error) {
 	apiRes := new(GetClubResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("get_club").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -103,7 +103,7 @@ type GetClubMembersResponse struct {
 
 func (c *Client) GetClubMembers(params *GetClubMembersParams) (*GetClubMembersResponse, *http.Response, error) {
 	apiRes := new(GetClubMembersResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Get("get_club_members").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -122,7 +122,7 @@ type GetClubsResponse struct {
 
 func (c *Client) GetClubs(params *GetClubsParams) (*GetClubsResponse, *http.Response, error) {
 	apiRes := new(GetClubsResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("get_clubs").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -145,7 +145,7 @@ type SearchClubsResponse struct {
 
 func (c *Client) SearchClubs(params *SearchClubsParams) (*SearchClubsResponse, *http.Response, error) {
 	apiRes := new(SearchClubsResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("search_clubs").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -162,7 +162,7 @@ type UnfollowClubResponse struct {
 
 func (c *Client) UnfollowClub(params *UnfollowClubParams) (*UnfollowClubResponse, *http.Response, error) {
 	apiRes := new(UnfollowClubResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("unfollow_club").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

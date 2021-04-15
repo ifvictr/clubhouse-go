@@ -69,7 +69,7 @@ type AddEmailResponse struct {
 
 func (c *Client) AddEmail(params *UpdateNameParams) (*AddEmailResponse, *http.Response, error) {
 	apiRes := new(AddEmailResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("add_email").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -85,7 +85,7 @@ type BlockResponse struct {
 
 func (c *Client) Block(params *BlockParams) (*BlockResponse, *http.Response, error) {
 	apiRes := new(BlockResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("block").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -103,7 +103,7 @@ type FollowResponse struct {
 
 func (c *Client) Follow(params *FollowParams) (*FollowResponse, *http.Response, error) {
 	apiRes := new(FollowResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("follow").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -122,7 +122,7 @@ type GetFollowersResponse struct {
 
 func (c *Client) GetFollowers(params *GetFollowersParams) (*GetFollowersResponse, *http.Response, error) {
 	apiRes := new(GetFollowersResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Get("get_followers").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -142,7 +142,7 @@ type GetFollowingResponse struct {
 
 func (c *Client) GetFollowing(params *GetFollowingParams) (*GetFollowingResponse, *http.Response, error) {
 	apiRes := new(GetFollowingResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Get("get_following").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -161,7 +161,7 @@ type GetMutualFollowsResponse struct {
 
 func (c *Client) GetMutualFollows(params *GetMutualFollowsParams) (*GetMutualFollowsResponse, *http.Response, error) {
 	apiRes := new(GetMutualFollowsResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Get("get_mutual_follows").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -178,7 +178,7 @@ type GetProfileResponse struct {
 
 func (c *Client) GetProfile(params *GetProfileParams) (*GetProfileResponse, *http.Response, error) {
 	apiRes := new(GetProfileResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("get_profile").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -195,7 +195,7 @@ type InviteToAppResponse struct {
 
 func (c *Client) InviteToApp(params *InviteToAppParams) (*InviteToAppResponse, *http.Response, error) {
 	apiRes := new(InviteToAppResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("invite_to_app").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -231,7 +231,7 @@ type MeResponse struct {
 
 func (c *Client) Me(params *MeParams) (*MeResponse, *http.Response, error) {
 	apiRes := new(MeResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("me").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -254,7 +254,7 @@ type SearchUsersResponse struct {
 
 func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *http.Response, error) {
 	apiRes := new(SearchUsersResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("search_users").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -270,7 +270,7 @@ type UnblockResponse struct {
 
 func (c *Client) Unblock(params *UnblockParams) (*UnblockResponse, *http.Response, error) {
 	apiRes := new(UnblockResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("unblock").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -286,7 +286,7 @@ type UnfollowResponse struct {
 
 func (c *Client) Unfollow(params *UnfollowParams) (*UnfollowResponse, *http.Response, error) {
 	apiRes := new(UnfollowResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("unfollow").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -301,7 +301,7 @@ type UpdateBioResponse struct {
 
 func (c *Client) UpdateBio(params *UpdateBioParams) (*UpdateBioResponse, *http.Response, error) {
 	apiRes := new(UpdateBioResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("update_bio").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -317,7 +317,7 @@ type UpdateNameResponse struct {
 
 func (c *Client) UpdateName(params *UpdateNameParams) (*UpdateNameResponse, *http.Response, error) {
 	apiRes := new(UpdateNameResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("update_name").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -335,7 +335,7 @@ type UpdateUsernameResponse struct {
 
 func (c *Client) UpdateUsername(params *UpdateUsernameParams) (*UpdateUsernameResponse, *http.Response, error) {
 	apiRes := new(UpdateUsernameResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("update_username").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

@@ -22,7 +22,7 @@ type GetStripeEphemeralKeyResponse struct {
 
 func (c *Client) GetStripeEphemeralKey(params *GetStripeEphemeralKeyParams) (*GetStripeEphemeralKeyResponse, *http.Response, error) {
 	apiRes := new(GetStripeEphemeralKeyResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("get_stripe_ephemeral_key").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -43,7 +43,7 @@ type SendDirectPaymentResponse struct {
 
 func (c *Client) SendDirectPayment(params *SendDirectPaymentParams) (*SendDirectPaymentResponse, *http.Response, error) {
 	apiRes := new(SendDirectPaymentResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("send_direct_payment").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

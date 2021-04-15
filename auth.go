@@ -13,7 +13,7 @@ type CallPhoneNumberAuthResponse struct {
 
 func (c *Client) CallPhoneNumberAuth(params *CallPhoneNumberAuthParams) (*CallPhoneNumberAuthResponse, *http.Response, error) {
 	apiRes := new(CallPhoneNumberAuthResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("call_phone_number_auth").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -38,7 +38,7 @@ type CompletePhoneNumberAuthResponse struct {
 
 func (c *Client) CompletePhoneNumberAuth(params *CompletePhoneNumberAuthParams) (*CompletePhoneNumberAuthResponse, *http.Response, error) {
 	apiRes := new(CompletePhoneNumberAuthResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("complete_phone_number_auth").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -54,7 +54,7 @@ type ResendPhoneNumberAuthResponse struct {
 
 func (c *Client) ResendPhoneNumberAuth(params *ResendPhoneNumberAuthParams) (*ResendPhoneNumberAuthResponse, *http.Response, error) {
 	apiRes := new(ResendPhoneNumberAuthResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("resend_phone_number_auth").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -71,7 +71,7 @@ type StartPhoneNumberAuthResponse struct {
 
 func (c *Client) StartPhoneNumberAuth(params *StartPhoneNumberAuthParams) (*StartPhoneNumberAuthResponse, *http.Response, error) {
 	apiRes := new(StartPhoneNumberAuthResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("start_phone_number_auth").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

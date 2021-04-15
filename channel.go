@@ -76,7 +76,7 @@ type BlockFromChannelResponse struct {
 
 func (c *Client) BlockFromChannel(params *BlockFromChannelParams) (*BlockFromChannelResponse, *http.Response, error) {
 	apiRes := new(BlockFromChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("block_from_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -121,7 +121,7 @@ type CreateChannelResponse struct {
 
 func (c *Client) CreateChannel(params *CreateChannelParams) (*CreateChannelResponse, *http.Response, error) {
 	apiRes := new(CreateChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("create_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -137,7 +137,7 @@ type EndChannelResponse struct {
 
 func (c *Client) EndChannel(params *EndChannelParams) (*EndChannelResponse, *http.Response, error) {
 	apiRes := new(EndChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("end_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -171,7 +171,7 @@ type GetChannelResponse struct {
 
 func (c *Client) GetChannel(params *GetChannelParams) (*GetChannelResponse, *http.Response, error) {
 	apiRes := new(GetChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("get_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -187,7 +187,7 @@ type GetChannelsResponse struct {
 
 func (c *Client) GetChannels() (*GetChannelsResponse, *http.Response, error) {
 	apiRes := new(GetChannelsResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Get("get_channels").Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -237,7 +237,7 @@ type JoinChannelResponse struct {
 
 func (c *Client) JoinChannel(params *JoinChannelParams) (*JoinChannelResponse, *http.Response, error) {
 	apiRes := new(JoinChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("join_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
@@ -253,7 +253,7 @@ type LeaveChannelResponse struct {
 
 func (c *Client) LeaveChannel(params *LeaveChannelParams) (*LeaveChannelResponse, *http.Response, error) {
 	apiRes := new(LeaveChannelResponse)
-	apiError := new(ErrorResponse)
+	apiError := new(APIError)
 	res, err := c.sling.New().Post("leave_channel").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

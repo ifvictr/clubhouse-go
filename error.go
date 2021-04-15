@@ -1,12 +1,12 @@
 package clubhouse
 
-type ErrorResponse struct {
+type APIError struct {
 	Response
 	Detail       *string `json:"detail"`
 	ErrorMessage *string `json:"error_message"`
 }
 
-func (e ErrorResponse) Error() string {
+func (e APIError) Error() string {
 	if e.Detail != nil {
 		return *e.Detail
 	}
@@ -16,11 +16,11 @@ func (e ErrorResponse) Error() string {
 	return ""
 }
 
-func (e ErrorResponse) Empty() bool {
+func (e APIError) Empty() bool {
 	return e.Detail == nil && e.ErrorMessage == nil
 }
 
-func relevantError(httpError error, apiError ErrorResponse) error {
+func relevantError(httpError error, apiError APIError) error {
 	if httpError != nil {
 		return httpError
 	}

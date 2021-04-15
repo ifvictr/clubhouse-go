@@ -206,3 +206,21 @@ func (c *Client) UpdateName(params *UpdateNameParams) (*UpdateNameResponse, *htt
 	res, err := c.sling.New().Post("update_name").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
+
+type UpdateUsernameParams struct {
+	TwitterToken  *string `json:"twitter_token"`
+	TwitterSecret *string `json:"twitter_secret"`
+	Username      string  `json:"username"`
+}
+
+type UpdateUsernameResponse struct {
+	Response
+	ErrorMessage *string `json:"error_message"`
+}
+
+func (c *Client) UpdateUsername(params *UpdateUsernameParams) (*UpdateUsernameResponse, *http.Response, error) {
+	apiRes := new(UpdateUsernameResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("update_username").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}

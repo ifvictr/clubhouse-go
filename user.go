@@ -59,6 +59,21 @@ type UserProfile struct {
 	Url                     *string           `json:"url"`
 }
 
+type AddEmailParams struct {
+	Email string `json:"email"`
+}
+
+type AddEmailResponse struct {
+	Response
+}
+
+func (c *Client) AddEmail(params *UpdateNameParams) (*AddEmailResponse, *http.Response, error) {
+	apiRes := new(AddEmailResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("add_email").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetFollowersParams struct {
 	UserID int `url:"user_id"`
 

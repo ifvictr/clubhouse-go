@@ -42,6 +42,23 @@ type Rule struct {
 	Title string `json:"title"`
 }
 
+type FollowClubParams struct {
+	ClubID        int    `json:"club_id,omitempty"`
+	Slug          string `json:"slug,omitempty"`
+	SourceTopicID int    `json:"source_topic_id,omitempty"`
+}
+
+type FollowClubResponse struct {
+	Response
+}
+
+func (c *Client) FollowClub(params *FollowClubParams) (*FollowClubResponse, *http.Response, error) {
+	apiRes := new(FollowClubResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("follow_club").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetClubParams struct {
 	ClubID        int    `json:"club_id,omitempty"`
 	Slug          string `json:"slug,omitempty"`
@@ -130,5 +147,22 @@ func (c *Client) SearchClubs(params *SearchClubsParams) (*SearchClubsResponse, *
 	apiRes := new(SearchClubsResponse)
 	apiError := new(ErrorResponse)
 	res, err := c.sling.New().Post("search_clubs").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
+type UnfollowClubParams struct {
+	ClubID        int    `json:"club_id,omitempty"`
+	Slug          string `json:"slug,omitempty"`
+	SourceTopicID int    `json:"source_topic_id,omitempty"`
+}
+
+type UnfollowClubResponse struct {
+	Response
+}
+
+func (c *Client) UnfollowClub(params *UnfollowClubParams) (*UnfollowClubResponse, *http.Response, error) {
+	apiRes := new(UnfollowClubResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("unfollow_club").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }

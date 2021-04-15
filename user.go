@@ -74,6 +74,24 @@ func (c *Client) AddEmail(params *UpdateNameParams) (*AddEmailResponse, *http.Re
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type FollowParams struct {
+	Source        int    `json:"source"` // TODO: Document all sources
+	SourceTopicID *int   `json:"source_topic_id"`
+	UserIDS       *[]int `json:"user_ids"`
+	UserID        int    `json:"user_id"`
+}
+
+type FollowResponse struct {
+	Response
+}
+
+func (c *Client) Follow(params *FollowParams) (*FollowResponse, *http.Response, error) {
+	apiRes := new(FollowResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("follow").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetFollowersParams struct {
 	UserID int `url:"user_id"`
 
@@ -203,6 +221,22 @@ func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *
 	apiRes := new(SearchUsersResponse)
 	apiError := new(ErrorResponse)
 	res, err := c.sling.New().Post("search_users").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
+type UnfollowParams struct {
+	UserID   int    `json:"user_id,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type UnfollowResponse struct {
+	Response
+}
+
+func (c *Client) Unfollow(params *UnfollowParams) (*UnfollowResponse, *http.Response, error) {
+	apiRes := new(UnfollowResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("unfollow").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
 

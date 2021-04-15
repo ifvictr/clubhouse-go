@@ -147,6 +147,25 @@ func (c *Client) GetFollowing(params *GetFollowingParams) (*GetFollowingResponse
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type GetMutualFollowsParams struct {
+	UserID int `url:"user_id"`
+
+	Page     *int `json:"-" url:"page,omitempty"`
+	PageSize *int `json:"-" url:"page_size,omitempty"`
+}
+
+type GetMutualFollowsResponse struct {
+	PageResponse
+	Users []FollowerUserProfile `json:"users"`
+}
+
+func (c *Client) GetMutualFollows(params *GetMutualFollowsParams) (*GetMutualFollowsResponse, *http.Response, error) {
+	apiRes := new(GetMutualFollowsResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Get("get_mutual_follows").QueryStruct(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetProfileParams struct {
 	UserID   int    `json:"user_id,omitempty"`
 	Username string `json:"username,omitempty"`

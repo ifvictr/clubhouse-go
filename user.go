@@ -190,3 +190,19 @@ func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *
 	res, err := c.sling.New().Post("search_users").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
+
+type UpdateNameParams struct {
+	Name string `json:"name"`
+}
+
+type UpdateNameResponse struct {
+	Response
+	ErrorMessage *string `json:"error_message"`
+}
+
+func (c *Client) UpdateName(params *UpdateNameParams) (*UpdateNameResponse, *http.Response, error) {
+	apiRes := new(UpdateNameResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("update_name").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}

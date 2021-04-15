@@ -74,6 +74,22 @@ func (c *Client) AddEmail(params *UpdateNameParams) (*AddEmailResponse, *http.Re
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type BlockParams struct {
+	UserID   int    `json:"user_id,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type BlockResponse struct {
+	Response
+}
+
+func (c *Client) Block(params *BlockParams) (*BlockResponse, *http.Response, error) {
+	apiRes := new(BlockResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("block").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type FollowParams struct {
 	Source        int    `json:"source"` // TODO: Document all sources
 	SourceTopicID *int   `json:"source_topic_id"`
@@ -221,6 +237,22 @@ func (c *Client) SearchUsers(params *SearchUsersParams) (*SearchUsersResponse, *
 	apiRes := new(SearchUsersResponse)
 	apiError := new(ErrorResponse)
 	res, err := c.sling.New().Post("search_users").BodyJSON(params).QueryStruct(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
+type UnblockParams struct {
+	UserID   int    `json:"user_id,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type UnblockResponse struct {
+	Response
+}
+
+func (c *Client) Unblock(params *UnblockParams) (*UnblockResponse, *http.Response, error) {
+	apiRes := new(UnblockResponse)
+	apiError := new(ErrorResponse)
+	res, err := c.sling.New().Post("unblock").BodyJSON(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
 

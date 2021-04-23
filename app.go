@@ -8,7 +8,11 @@ type CheckForUpdateParams struct {
 
 type CheckForUpdateResponse struct {
 	Response
-	HasUpdate bool `json:"has_update"`
+	AppBuild    *int    `json:"app_build,omitempty"`
+	AppURL      *string `json:"app_url,omitempty"`
+	AppVersion  *string `json:"app_version,omitempty"`
+	HasUpdate   bool    `json:"has_update"`
+	IsMandatory *bool   `json:"is_mandatory,omitempty"`
 }
 
 func (c *Client) CheckForUpdate(params *CheckForUpdateParams) (*CheckForUpdateResponse, *http.Response, error) {

@@ -17,6 +17,7 @@ const (
 
 	AppBuild   = 297
 	AppVersion = "0.1.27"
+	IOSVersion = "14.3"
 )
 
 type Client struct {
@@ -37,7 +38,7 @@ func New(opts ...ClientOption) *Client {
 
 	client.sling = sling.New().Client(httpClient).Base(BaseURL)
 	client.deviceID = uuid.New()
-	client.userAgent = fmt.Sprintf("clubhouse/%d (iPhone; iOS 14.3; Scale/2.00)", AppBuild)
+	client.userAgent = fmt.Sprintf("clubhouse/%d (iPhone; iOS %s; Scale/2.00)", AppBuild, IOSVersion)
 
 	// Set default headers
 	headers := map[string]string{

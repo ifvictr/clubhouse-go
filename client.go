@@ -17,7 +17,7 @@ const (
 
 	AppBuild   = 297
 	AppVersion = "0.1.27"
-	IOSVersion = "14.3"
+	IOSVersion = "14.4.2"
 )
 
 type Client struct {

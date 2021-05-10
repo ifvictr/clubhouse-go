@@ -8,6 +8,7 @@ type Event struct {
 	Description  string      `json:"description"`
 	EventID      int         `json:"event_id"`
 	Hosts        []EventHost `json:"hosts"`
+	IsAttending  bool        `json:"is_attending"`
 	IsExpired    bool        `json:"is_expired"`
 	IsMemberOnly bool        `json:"is_member_only"`
 	Name         string      `json:"name"`

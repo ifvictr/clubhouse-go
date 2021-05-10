@@ -56,6 +56,7 @@ type UserProfile struct {
 	TimeCreated             time.Time         `json:"time_created"`
 	Topics                  []Topic           `json:"topics"`
 	Twitter                 *string           `json:"twitter"`
+	UpcomingEvents          []Event           `json:"upcoming_events"`
 	Url                     *string           `json:"url"`
 }
 

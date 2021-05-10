@@ -45,6 +45,27 @@ func (c *Client) GetEvents(params *GetEventsParams) (*GetEventsResponse, *http.R
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type GetEventsForClubParams struct {
+	ClubID              int         `json:"club_id"`
+	InviteCode          interface{} `json:"invite_code"` // TODO: Find real type
+	QueryID             *string     `json:"query_id"`
+	QueryResultPosition *int        `json:"query_result_position"`
+	Slug                *string     `json:"slug"`
+	SourceTopicID       *int        `json:"source_topic_id"`
+}
+
+type GetEventsForClubResponse struct {
+	Response
+	Events []Event `json:"events"`
+}
+
+func (c *Client) GetEventsForClub(params *GetEventsForClubParams) (*GetEventsForClubResponse, *http.Response, error) {
+	apiRes := new(GetEventsForClubResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Post("get_events_for_club").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetEventsForUserParams struct {
 	UserID int `url:"user_id"`
 

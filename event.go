@@ -88,3 +88,19 @@ func (c *Client) GetEventsForUser(params *GetEventsForUserParams) (*GetEventsFor
 	res, err := c.sling.New().Get("get_events_for_user").QueryStruct(params).Receive(apiRes, apiError)
 	return apiRes, res, relevantError(err, *apiError)
 }
+
+type RsvpEventParams struct {
+	EventID     int  `json:"event_id"`
+	IsAttending bool `json:"is_attending"`
+}
+
+type RsvpEventResponse struct {
+	Response
+}
+
+func (c *Client) RsvpEvent(params *RsvpEventParams) (*RsvpEventResponse, *http.Response, error) {
+	apiRes := new(RsvpEventResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Post("rsvp_event").BodyJSON(params).Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}

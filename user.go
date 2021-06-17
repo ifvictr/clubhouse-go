@@ -34,6 +34,7 @@ type SearchUserProfile struct {
 type UserProfile struct {
 	BaseUserProfile
 	Bio                     *string           `json:"bio"`
+	BioLinks                []BioLink         `json:"bio_links"`
 	CanEditDisplayname      bool              `json:"can_edit_displayname"`
 	CanEditName             bool              `json:"can_edit_name"`
 	CanEditUsername         bool              `json:"can_edit_username"`
@@ -58,6 +59,13 @@ type UserProfile struct {
 	Twitter                 *string           `json:"twitter"`
 	UpcomingEvents          []Event           `json:"upcoming_events"`
 	Url                     *string           `json:"url"`
+}
+
+type BioLink struct {
+	Length   int    `json:"length"`
+	Position int    `json:"position"`
+	TargetID int    `json:"target_id"`
+	Type     string `json:"type"`
 }
 
 type AddEmailParams struct {

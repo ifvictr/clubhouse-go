@@ -42,6 +42,20 @@ type Rule struct {
 	Title string `json:"title"`
 }
 
+type CanCreateClubResponse struct {
+	Response
+	CanCreateClub bool   `json:"can_create_club"`
+	ReasonMessage string `json:"reason_message"`
+	ReasonTitle   string `json:"reason_title"`
+}
+
+func (c *Client) CanCreateClub() (*CanCreateClubResponse, *http.Response, error) {
+	apiRes := new(CanCreateClubResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Get("can_create_club").Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type FollowClubParams struct {
 	ClubID        int    `json:"club_id,omitempty"`
 	Slug          string `json:"slug,omitempty"`

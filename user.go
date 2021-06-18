@@ -185,7 +185,10 @@ type GetOnlineFriendsResponse struct {
 	} `json:"clubs"`
 	Users []struct {
 		BaseUserProfile
-		LastActiveMinutes int `json:"last_active_minutes"`
+		Channel           *string `json:"channel,omitempty"`
+		IsSpeaker         *bool   `json:"is_speaker,omitempty"`
+		LastActiveMinutes int     `json:"last_active_minutes"`
+		Topic             *string `json:"topic,omitempty"`
 	} `json:"users"`
 }
 

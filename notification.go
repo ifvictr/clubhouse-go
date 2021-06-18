@@ -13,6 +13,18 @@ type Notification struct {
 	UserProfile    UserProfile `json:"user_profile"`
 }
 
+type GetActionableNotificationsResponse struct {
+	PageResponse
+	Notifications []Notification `json:"notifications"`
+}
+
+func (c *Client) GetActionableNotifications() (*GetNotificationsResponse, *http.Response, error) {
+	apiRes := new(GetNotificationsResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Get("get_actionable_notifications").Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetNotificationsParams struct {
 	Page     *int `json:"-" url:"page,omitempty"`
 	PageSize *int `json:"-" url:"page_size,omitempty"`

@@ -11,16 +11,14 @@ func main() {
 	token := flag.String("token", "", "Clubhouse account auth token")
 	flag.Parse()
 
-	// Clubhouse client
 	client := clubhouse.NewFromToken(*token)
-
 	res, _, err := client.GetChannels()
 	if err != nil {
 		fmt.Printf("Could not get channels: %s\n", err)
 		return
 	}
 
-	// Print out channels in hallway
+	// Print out channels seen in the hallway screen
 	for i, channel := range res.Channels {
 		var topic string
 		if channel.Topic != nil {

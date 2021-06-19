@@ -39,20 +39,6 @@ const (
 	AgoraAudioProfileSpeechStandard FeatureFlag = "AGORA_AUDIO_PROFILE_SPEECH_STANDARD"
 )
 
-type LoggingContext struct {
-	BatchID   string   `json:"batch_id"`
-	ChannelID int      `json:"channel_id"`
-	Reasons   []Reason `json:"reasons"`
-}
-
-type Reason string
-
-const (
-	AffinityList  Reason = "affinity_list"
-	ClubIFollow   Reason = "club_i_follow"
-	PersonIFollow Reason = "person_i_follow"
-)
-
 type ChannelUser struct {
 	BaseUserProfile
 	FirstName           string     `json:"first_name"`
@@ -178,11 +164,8 @@ func (c *Client) GetChannel(params *GetChannelParams) (*GetChannelResponse, *htt
 
 type GetChannelsResponse struct {
 	Response
-	Channels []struct {
-		Channel
-		LoggingContext LoggingContext `json:"logging_context"`
-	} `json:"channels"`
-	Events []Event `json:"events"`
+	Channels []Channel `json:"channels"`
+	Events   []Event   `json:"events"`
 }
 
 func (c *Client) GetChannels() (*GetChannelsResponse, *http.Response, error) {

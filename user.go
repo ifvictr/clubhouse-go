@@ -269,6 +269,7 @@ type MeResponse struct {
 	FollowingIds                 *[]int   `json:"following_ids"`
 	HasUnreadNotifications       bool     `json:"has_unread_notifications"`
 	IsAdmin                      bool     `json:"is_admin"`
+	IsAmbassador                 bool     `json:"is_ambassador"`
 	NotificationsEnabled         bool     `json:"notifications_enabled"`
 	NumInvites                   int      `json:"num_invites"`
 	RefreshToken                 string   `json:"refresh_token"`

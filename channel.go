@@ -37,6 +37,7 @@ type FeatureFlag string
 
 const (
 	AgoraAudioProfileSpeechStandard FeatureFlag = "AGORA_AUDIO_PROFILE_SPEECH_STANDARD"
+	MusicStandardStereo             FeatureFlag = "MUSIC_STANDARD_STEREO"
 )
 
 type ChannelUser struct {

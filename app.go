@@ -22,6 +22,19 @@ func (c *Client) CheckForUpdate(params *CheckForUpdateParams) (*CheckForUpdateRe
 	return apiRes, res, relevantError(err, *apiError)
 }
 
+type GetFeedResponse struct {
+	Items []struct {
+		Channel *Channel `json:"channel,omitempty"`
+	} `json:"items"`
+}
+
+func (c *Client) GetFeed() (*GetFeedResponse, *http.Response, error) {
+	apiRes := new(GetFeedResponse)
+	apiError := new(APIError)
+	res, err := c.sling.New().Get("get_feed").Receive(apiRes, apiError)
+	return apiRes, res, relevantError(err, *apiError)
+}
+
 type GetSettingsResponse struct {
 	Response
 	NotificationsEnableOther     bool `json:"notifications_enable_other"`
